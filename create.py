@@ -7,8 +7,9 @@ structure = {
         "data": ["__init__.py", "loader.py", "preprocessor.py"],
         "api": ["__init__.py", "endpoints.py", "handlers.py"],
         "utils": ["__init__.py", "logger.py", "config.py"],
+        "spider": ["__init__.py", "crawler.py", "item.py", "pipelines.py", "settings.py"],
         "app.py": None,
-        "config.py": None
+        "config.py": None,
     },
     "tests": ["__init__.py", "test_index.py", "test_data.py", "test_api.py", "test_utils.py"],
     "docs": ["index.md", "api.md", "architecture.md", "usage.md"],
@@ -38,9 +39,12 @@ def create_structure(base_path, structure):
             # 创建目录
             os.makedirs(path, exist_ok = True)
             for file_name in content:
-                # 创建文件
-                file_path = os.path.join(path, file_name)
-                open(file_path, 'w').close()
+                # # 创建文件
+                # file_path = os.path.join(path, file_name)
+                # open(file_path, 'w').close()
+                # 判断文件是否存在，若不存在则创建文件
+                if not os.path.exists(os.path.join(path, file_name)):
+                    open(os.path.join(path, file_name), 'w').close()
         else:
             # 创建文件
             open(path, 'w').close()
